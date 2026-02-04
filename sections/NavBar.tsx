@@ -1,27 +1,60 @@
 import AppInput from '@/components/AppInput';
+import AppLogo from '@/components/AppLogo';
+import CustomizedMenus from '@/components/AppProfileButton';
+import CustomizedBadges from '@/components/AppShoppingButton';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
-
-
+import SearchIcon from '@mui/icons-material/Search';
+import Typography from '@mui/material/Typography';
 
 const NavBar = () => {
     return(
-       <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static" sx={{backgroundColor:"white", height:"110px"}}>
-        <Toolbar sx={{display:"flex"}}>
-            <AppInput
-             name='hot'
-             label='hot'
-             radius='lg'
-             placeholder='dont touch'
-             size='sm'
-             
-            />
-        </Toolbar>
-      </AppBar>
-    </Box>
+       <Box sx={{ flexGrow: 1}}>
+          <AppBar   
+          position="static"
+          sx={{
+            backgroundColor:"white",
+             height:"110px",
+              paddingX:"48px",
+              display:"flex",
+              justifyContent:"center",
+              boxShadow:'none',
+             borderBottom: "1px solid #A4A9AA"
+
+               }}>
+            <Toolbar 
+            sx={{
+                display: "grid",
+                gridTemplateColumns: "70% 30%",
+                alignItems: "center",          
+                columnGap: "16px",             
+              }}
+              >
+              <Box sx={{display:"flex",alignItems:"center",gap:'16px'}}>
+                 <AppLogo/>
+                <AppInput 
+                name='جستجو'
+                placeholder='جستجو'
+                radius='lg'
+                startContent={
+                <SearchIcon
+                  sx={{
+                    color:"#C2C5C6",
+                    width:24,
+                    marginLeft:'2px'
+                  }}/>
+                }
+                />
+              </Box>
+              <Box sx={{display:"flex",justifyContent:"end",gap:"16px"}}>
+                <CustomizedMenus/>
+                <CustomizedBadges/>
+              </Box>
+            </Toolbar>
+          </AppBar>
+       </Box>
     )
 }
 
-export default NavBar   
+export default NavBar;
