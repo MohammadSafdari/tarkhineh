@@ -2,7 +2,8 @@
 import Badge, { BadgeProps } from '@mui/material/Badge';
 import { styled } from '@mui/material/styles';
 import IconButton from '@mui/material/IconButton';
-import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
+import { text } from 'stream/consumers';
 
 const StyledBadge = styled(Badge)<BadgeProps>(({ theme }) => ({
   '& .MuiBadge-badge': {
@@ -10,15 +11,16 @@ const StyledBadge = styled(Badge)<BadgeProps>(({ theme }) => ({
     top: 13,
     border: `2px solid ${(theme.vars ?? theme).palette.background.paper}`,
     padding: '0 4px',
+    
   },
 }));
 
 export default function CustomizedBadges() {
   return (
     <IconButton aria-label="cart">
-      <StyledBadge badgeContent={4} color="secondary">
-        <ShoppingCartIcon />
-      </StyledBadge>
+      {/* <StyledBadge badgeContent={4} color="primary"> */}
+        <ShoppingCartOutlinedIcon sx={{width:24,height:24}} />
+      {/* </StyledBadge> */}
     </IconButton>
   );
 }

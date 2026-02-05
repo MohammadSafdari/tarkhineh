@@ -7,6 +7,7 @@ import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import SearchIcon from '@mui/icons-material/Search';
 import Typography from '@mui/material/Typography';
+import QuickFilter from './QuickFilter';
 
 const NavBar = () => {
     return(
@@ -16,11 +17,11 @@ const NavBar = () => {
           sx={{
             backgroundColor:"white",
              height:"110px",
-              paddingX:"48px",
+              paddingX:"78px",
               display:"flex",
               justifyContent:"center",
               boxShadow:'none',
-             borderBottom: "1px solid #A4A9AA"
+             borderBottom: "1px solid #E1E2E3"
 
                }}>
             <Toolbar 
@@ -31,7 +32,7 @@ const NavBar = () => {
                 columnGap: "16px",             
               }}
               >
-              <Box sx={{display:"flex",alignItems:"center",gap:'16px'}}>
+              <Box sx={{display:"flex",alignItems:"center",gap:'24px'}}>
                  <AppLogo/>
                 <AppInput 
                 name='جستجو'
@@ -53,6 +54,7 @@ const NavBar = () => {
               </Box>
             </Toolbar>
           </AppBar>
+          <QuickFilter/>
        </Box>
     )
 }

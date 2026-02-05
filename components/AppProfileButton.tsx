@@ -11,7 +11,7 @@ import ArchiveIcon from '@mui/icons-material/Archive';
 import FileCopyIcon from '@mui/icons-material/FileCopy';
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
-
+import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
 const StyledMenu = styled((props: MenuProps) => (
   <Menu
     elevation={0}
@@ -71,16 +71,22 @@ export default function CustomizedMenus() {
   return (
     <div>
       <Button
+        sx={{
+          color:"#676F71",
+          border:"1px solid #E1E2E3", 
+          paddingX:"14px", 
+          paddingY:"2px",
+          borderRadius:"8px",
+        }}
         id="demo-customized-button"
         aria-controls={open ? 'demo-customized-menu' : undefined}
         aria-haspopup="true"
         aria-expanded={open ? 'true' : undefined}
-        variant="contained"
         disableElevation
         onClick={handleClick}
         endIcon={<KeyboardArrowDownIcon />}
       >
-        Options
+        <PersonOutlineOutlinedIcon sx={{width:24, marginLeft:"16px"}}/>
       </Button>
       <StyledMenu
         id="demo-customized-menu"
