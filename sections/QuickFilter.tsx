@@ -9,18 +9,17 @@ const QuickFilter = () => {
     return(
         <Box sx={{
             display:"flex",
-            gap:"4px",
-            paddingX:"78px",
-            paddingY:"20px",
+            paddingX:"100px",
+            paddingY:"10px",
             
         }}
         >
            <AppButton
            sx={{
-            fontSize:"16px",
+            fontSize:"14px",
             color:'#292C2D',
             display:'flex',
-            gap:'10px',
+            gap:'5px',
             alignItems:'center',
               "&:hover": {
               color: "#DC2655",
@@ -35,10 +34,10 @@ const QuickFilter = () => {
            />
            <AppButton
            sx={{
-            fontSize:"16px",
+            fontSize:"14px",
              color:'#292C2D',
             display:'flex',
-            gap:'10px',
+            gap:'5px',
             alignItems:'center',
               "&:hover": {
               color: "#DC2655",
@@ -53,10 +52,10 @@ const QuickFilter = () => {
            />
            <AppButton
            sx={{
-            fontSize:"16px",
+            fontSize:"14px",
             color:'#292C2D',
             display:'flex',
-            gap:'10px',
+            gap:'5px',
             alignItems:'center',
               "&:hover": {
               color: "#DC2655",
@@ -71,10 +70,10 @@ const QuickFilter = () => {
            />
            <AppButton
            sx={{
-            fontSize:"16px",
+            fontSize:"14px",
              color:'#292C2D',
             display:'flex',
-            gap:'10px',
+            gap:'5px',
             alignItems:'center',
               "&:hover": {
               color: "#DC2655",
@@ -89,10 +88,10 @@ const QuickFilter = () => {
            />
            <AppButton
            sx={{
-            fontSize:"16px",
+            fontSize:"14px",
             color:'#292C2D',
             display:'flex',
-            gap:'10px',
+            gap:'5px',
             alignItems:'center',
               "&:hover": {
               color: "#DC2655",
@@ -107,7 +106,7 @@ const QuickFilter = () => {
            />
            <AppButton
            sx={{
-            fontSize:"16px",
+            fontSize:"14px",
               color:'#292C2D',
               "&:hover": {
               color: "#DC2655",

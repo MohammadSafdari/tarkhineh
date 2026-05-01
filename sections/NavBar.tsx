@@ -17,7 +17,7 @@ const NavBar = () => {
           sx={{
             backgroundColor:"white",
              height:"110px",
-              paddingX:"78px",
+              paddingX:"100px",
               display:"flex",
               justifyContent:"center",
               boxShadow:'none',
@@ -33,7 +33,7 @@ const NavBar = () => {
               }}
               >
               <Box sx={{display:"flex",alignItems:"center",gap:'24px'}}>
-                 <AppLogo/>
+                 <AppLogo />
                 <AppInput 
                 name='جستجو'
                 placeholder='جستجو'
