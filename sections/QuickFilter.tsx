@@ -38,6 +38,7 @@ const QuickFilter = () => {
              color:'#292C2D',
             display:'flex',
             gap:'5px',
+
             alignItems:'center',
               "&:hover": {
               color: "#DC2655",

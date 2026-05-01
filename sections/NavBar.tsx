@@ -34,6 +34,7 @@ const NavBar = () => {
               >
               <Box sx={{display:"flex",alignItems:"center",gap:'24px'}}>
                  <AppLogo />
+
                 <AppInput 
                 name='جستجو'
                 placeholder='جستجو'

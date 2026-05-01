@@ -25,11 +25,17 @@
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+<<<<<<< HEAD
     "autoprefixer": "^10.5.0",
     "eslint": "^9",
     "eslint-config-next": "16.1.6",
     "postcss": "^8.5.13",
     "tailwindcss": "^4.2.4",
+=======
+    "eslint": "^9",
+    "eslint-config-next": "16.1.6",
+    "tailwindcss": "^4",
+>>>>>>> fe9853dcc207ffe2e123f33c71fa5e116d6ff618
     "typescript": "^5"
   }
 }
