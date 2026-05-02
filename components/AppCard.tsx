@@ -6,7 +6,7 @@ import CardActionArea from '@mui/material/CardActionArea';
 import { forwardRef, ReactNode } from 'react';
 import { SxProps, Theme } from '@mui/material';
 import {Box} from '@mui/material';
-import { display } from '@mui/system';
+import { display, fontWeight, justifyContent } from '@mui/system';
 
 
 interface AppCardProps {
@@ -71,6 +71,7 @@ const AppCard = forwardRef<HTMLDivElement, AppCardProps>(
         className={className}
         sx={{
           maxWidth: sizeMap[size],
+          height:"340px",
           borderRadius: radiusMap[radius],
           opacity: disabled ? 0.5 : 1,
           cursor: disabled ? "not-allowed" : "pointer",
@@ -78,55 +79,70 @@ const AppCard = forwardRef<HTMLDivElement, AppCardProps>(
         }}
         onClick={disabled ? undefined : onClick}
       >
-        <CardActionArea disabled={disabled}>
+        <CardActionArea sx={{height:"100%"}}>
+
           {img && (
             <CardMedia
-              component="img"
-              height={sizeMap[size]}
-              image={img}
-              alt={title || "card image"}
+            component="img"
+            height={sizeMap[size]}
+            image={img}
+            alt={title || "card image"}
             />
           )}
           <CardContent>
+            <Box sx={{display:"flex",flexDirection:"column", gap:"12px"}}>
+            <Box>
             <Box sx={{display:"flex",alignItems:"center",justifyContent:"space-between"}}>
-
             {title && (
-                <Typography
-                variant="h6"
-                component="div"
-                color={color ? "primary" : "textPrimary"}
-                gutterBottom
-                >
-                {title}
-              </Typography>
-            )}
-            {rate !== undefined && (
-                <Typography variant="body2" color="text.secondary">
-                ⭐ {rate}
-              </Typography>
-            )}
-            </Box>
-            {description && (
-              <Typography variant="body2" color="text.secondary">
-                {description}
-              </Typography>
-            )}
-            {(price !== undefined || oldPrice !== undefined || discount) && (
-              <Typography variant="body2" color="text.secondary">
-                {oldPrice && (
-                  <span style={{ textDecoration: "line-through", marginRight: 8 }}>
-                    ${oldPrice.toFixed(2)}
-                  </span>
+              <Typography sx={{fontSize:"16px",color:["#52595A"]}}>
+                  {title}
+                </Typography>
                 )}
-                {price && <span>${price.toFixed(2)}</span>}
-                {discount && discount > 0 && (
-                  <span style={{ marginLeft: 8, color: "red" }}>
-                    ({discount}% OFF)
-                  </span>
+                {rate !== undefined && (
+                  <Typography >
+                    {rate} ⭐
+                  </Typography>
                 )}
-              </Typography>
-            )}
-            {children && <div>{children}</div>}
+                </Box>
+                {description && (
+                  <Typography sx={{fontSize:"16px",color:["#52595A"],fontWeight:"400"}}>
+                    {description}
+                  </Typography>
+                )}
+              </Box>
+              <Box>
+              {color && (
+                <Box sx={{display:"flex",gap:"4px"}}>
+                  <Box sx={{backgroundColor:["#52595A"],borderRadius:"100px",paddingX:"10px",paddingY:"4px"}}></Box>
+                  <Box sx={{backgroundColor:["#745F38"],borderRadius:"100px",paddingX:"10px",paddingY:"4px"}}></Box>
+                  <Box sx={{backgroundColor:["#D1D4D4"],borderRadius:"100px",paddingX:"10px",paddingY:"4px"}}></Box>
+                  <Box sx={{backgroundColor:["#737272"],borderRadius:"100px",paddingX:"10px",paddingY:"4px"}}></Box>
+                </Box>
+              )}
+              </Box>
+              <Box>
+              {(price !== undefined || oldPrice !== undefined || discount) && (
+                <Box sx={{display:"flex",alignItems:"end",justifyContent:"space-between"}}>
+                    {discount && discount > 0 && (
+                      <Typography sx={{backgroundColor:['#F87171'],color:"white",paddingX:"8px",paddingY:"2px",borderRadius:"100px",fontSize:"12px"}}>
+                        {discount}%
+                      </Typography>
+                    )}
+                  <Box sx={{display:"flex",flexDirection:"column",alignItems:"end",gap:"4px"}}>
+                    {oldPrice && (
+                      <Typography sx={{ textDecoration: "line-through",color:["#52595A"],fontSize:"14px"}}>
+                        ${oldPrice.toFixed(2)}
+                      </Typography>
+                    )}
+                      {price && 
+                        <Typography sx={{textAlign:"end"}}>${price.toFixed(2)}</Typography>
+                      }
+                  </Box>
+                </Box>
+              )}
+              </Box>
+              </Box>
+              {children && <div>{children}</div>}
           </CardContent>
         </CardActionArea>
       </Card>
