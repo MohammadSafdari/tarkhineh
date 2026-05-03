@@ -5,6 +5,7 @@ import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import CardActionArea from '@mui/material/CardActionArea';
 import { Box } from "@mui/material";
+import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace';
 
 interface AppCardBlogProps{
     img: string,
@@ -24,21 +25,23 @@ const AppCardBlog = forwardRef<HTMLDivElement,AppCardBlogProps>(
         ref
     ) => {
          return(
-        <Card sx={{ maxWidth: 345 }}>
+        <Card sx={{ maxWidth: 345,borderRadius:"18px" }}>
             <CardActionArea>
-                <Box sx={{display:"flex",flexDirection:"column",gap:"12px"}}>
+                <Box>
                     <Box>
-                        <img src={img}/>
+                        <img src={img} className="w-full"/>
                     </Box>
+                   <CardContent>
                     <Box>
                         <Typography>{ask}</Typography>
-                        <Typography>{description}</Typography>
+                        <Typography sx={{marginTop:"5px",color:["#676F71"],fontSize:"14px"}}>{description}</Typography>
                     </Box>
-                    <Box>
-                        <Typography>{date}</Typography>
-                        <Typography>برگشت</Typography>
+                    <Box sx={{display:"flex",alignItems:"center",justifyContent:"space-between",marginTop:"25px"}}>
+                        <Typography sx={{color:["#676F71"],fontSize:"14px"}}>{date}</Typography>
+                        <KeyboardBackspaceIcon sx={{color:["#676F71"],fontSize:"20px"}}/>
                         
                     </Box>
+                </CardContent>
                 </Box>
             </CardActionArea>
         </Card>

@@ -2,6 +2,7 @@ import NavBar from "@/sections/NavBar";
 import "../ui/globals.css";
 
 import Header from "@/sections/Header";
+import Footer from "@/sections/Footer";
 
 
 export default function RootLayout({
@@ -11,13 +12,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="fa" dir="rtl">
-      <body
-      >
+      <body>
         <NavBar/>
-
         <Header/>
-
         {children}
+        <Footer/>
       </body>
     </html>
   );

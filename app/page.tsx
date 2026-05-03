@@ -45,6 +45,9 @@ export default function Home() {
     </Box>
      <Box sx={{display:"flex",alignItems:"center",justifyContent:"center",gap:"18px",marginTop:"10px",width:"80%" }}>
       <AppCardBlog img="imgBlog.png" date="1405/08/22" ask="فرش ایرانی در خانه مدرن" description="فرش ایرانی یکی از با ارزش ترین محصولات"/>
+      <AppCardBlog img="imgBlog.png" date="1405/08/22" ask="فرش ایرانی در خانه مدرن" description="فرش ایرانی یکی از با ارزش ترین محصولات"/>
+      <AppCardBlog img="imgBlog.png" date="1405/08/22" ask="فرش ایرانی در خانه مدرن" description="فرش ایرانی یکی از با ارزش ترین محصولات"/>
+      <AppCardBlog img="imgBlog.png" date="1405/08/22" ask="فرش ایرانی در خانه مدرن" description="فرش ایرانی یکی از با ارزش ترین محصولات"/>
     </Box>
     </Box>
   );
