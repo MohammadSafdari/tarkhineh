@@ -9,7 +9,9 @@ import SearchIcon from '@mui/icons-material/Search';
 import Typography from '@mui/material/Typography';
 import QuickFilter from './QuickFilter';
 
+
 const NavBar = () => {
+
     return(
        <Box sx={{ flexGrow: 1}}>
           <AppBar   
@@ -51,7 +53,7 @@ const NavBar = () => {
               </Box>
               <Box sx={{display:"flex",justifyContent:"end",gap:"16px"}}>
                 <CustomizedMenus/>
-                <CustomizedBadges/>
+                <CustomizedBadges />
               </Box>
             </Toolbar>
           </AppBar>

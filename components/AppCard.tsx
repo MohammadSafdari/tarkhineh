@@ -6,7 +6,6 @@ import CardActionArea from '@mui/material/CardActionArea';
 import { forwardRef, ReactNode } from 'react';
 import { SxProps, Theme } from '@mui/material';
 import {Box} from '@mui/material';
-import { display, fontWeight, justifyContent } from '@mui/system';
 
 
 interface AppCardProps {

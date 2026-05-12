@@ -3,6 +3,7 @@ import "../ui/globals.css";
 
 import Header from "@/sections/Header";
 import Footer from "@/sections/Footer";
+import { Box } from "@mui/material";
 
 
 export default function RootLayout({
@@ -13,10 +14,12 @@ export default function RootLayout({
   return (
     <html lang="fa" dir="rtl">
       <body>
-        <NavBar/>
-        <Header/>
-        {children}
-        <Footer/>
+          <NavBar/>
+          <Header/>
+        <Box sx={{display:"flex",flexDirection:"column",alignItems:"center",justifyContent:"center"}}>
+          {children}
+        </Box>
+          <Footer/>
       </body>
     </html>
   );
