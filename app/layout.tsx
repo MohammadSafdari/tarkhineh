@@ -20,6 +20,8 @@ export default function RootLayout({
           {children}
         </Box>
           <Footer/>
+          <Footer/>
+          <Footer/>
       </body>
     </html>
   );
