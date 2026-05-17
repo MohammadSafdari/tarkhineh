@@ -1,9 +1,11 @@
-import { memo, useMemo } from "react";
-import { Box, Typography } from "@mui/material";
+"use client"
 
+import { memo, useMemo } from "react";
+import { Box, Button, Typography } from "@mui/material";
 import AppCard from "@/components/AppCard";
 import AppCategoryCard from "@/components/AppCategoryCard";
 import AppCardBlog from "@/components/AppCardBlog";
+import counter from "../../store/useBearStore";
 
 const products = [
   {
@@ -88,6 +90,8 @@ const Banner = memo(
 );
 
 export default function Home() {
+
+
   const renderedCategories = useMemo(
     () =>
       categories.map((item, index) => (
@@ -103,8 +107,10 @@ export default function Home() {
       )),
     []
   );
-
+const { theme, toggleTheme } = counter();
   return (
+
+    
     <Box
       sx={{
         width: "80%",
@@ -114,7 +120,12 @@ export default function Home() {
         justifyContent: "center",
       }}
     >
-      <ProductSection />
+    <Button
+      onClick={toggleTheme}
+      className="p-4 bg-gray-200 dark:bg-gray-700 rounded-xl"
+    >
+      {theme === 'light' ? '🌙 دارک مود' : '☀️ لایت مود'}
+    </Button>
 
       <Box
         sx={{
