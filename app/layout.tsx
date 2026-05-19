@@ -1,18 +1,13 @@
-import "@/ui/globals.css";
-import ThemeProvider from './providers';
+import '@/ui/globals.css';
 
 export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
+                                       children,
+                                   }: {
+    children: React.ReactNode;
 }) {
-  return (
-    <html lang="fa" dir="rtl">
-      <body>
-      <ThemeProvider>
-        {children}
-      </ThemeProvider>
-      </body>
-    </html>
-  );
+    return (
+        <html lang="fa" dir="rtl" suppressHydrationWarning>
+        <body>{children}</body>
+        </html>
+    );
 }
