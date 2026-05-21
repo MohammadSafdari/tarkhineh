@@ -2,55 +2,55 @@ import { createTheme } from "@mui/material/styles";
 
 export const theme = createTheme({
     palette: {
+
         primary: {
-            100: "#E5F2E9",
-            200: "#CAE4D3",
-            300: "#B0D7BD",
-            400: "#96C9A7",
-            500: "#7CBC91",
-            600: "#61AE7B",
-            700: "#4E9968",
-            800: "#396F4B",
-            900: "#315F41",
-            1000: "#294F36",
-            1100: "#21402B",
-            1200: "#183020",
-            1300: "#102016",
-            1400: "#08100B",
+            main: '#417F56',
+            light: '#E5F2E9',
+            dark: '#315F41',
+            contrastText: '#fff',
         },
 
-        secondary: {
-            50: "#F9F9F9",
-            100: "#E1E1E1",
-            200: "#EDEDED",
-            300: "#CBCBCB",
-            400: "#ADADAD",
-            500: "#757575",
-            600: "#717171",
-            700: "#353535",
-            900: "#0C0C0C",
+        secondary:{
+            dark: '#0C0C0C',
+            main: '#717171',
+            light: '#353535',
+            contrastText: '#fff',
         },
+
+        third: {
+            main: "#E5F2E9",
+            light: "#CAE4D3",
+            dark: "#B0D7BD",
+            contrastText: "#fff",
+        },
+
 
         success: {
-            100: "#00966D",
-            200: "#00BA88",
-            300: "#F3FDFA",
+            main: "#00BA88",
+            light: "#F3FDFA",
+            dark: "#00966D",
+            contrastText: "#fff",
         },
 
         error: {
-            100: "#C30000",
-            200: "#ED2E2E",
-            300: "#FFF2F2",
+            main: "#ED2E2E",
+            light: "#FFF2F2",
+            dark: "#C30000",
+            contrastText: "#fff",
         },
 
         warning: {
-            100: "#A9791C",
-            200: "#F4B740",
-            300: "#FFF2F2",
+            main: "#F4B740",
+            light: "#FFF8E1",
+            dark: "#A9791C",
+            contrastText: "#fff",
         },
     },
 
     typography: {
+        fontFamily:"vazirmatn",
+
+
         display1: {
             fontSize: "64px",
             fontWeight: 700,
@@ -79,7 +79,7 @@ export const theme = createTheme({
         captionLG: { fontSize: "14px", fontWeight: 700, lineHeight: "180%" },
         captionSM: { fontSize: "10px", fontWeight: 700, lineHeight: "180%" },
 
-        buttonLG: {
+        buttonMD: {
             fontSize: "16px",
             fontWeight: 500,
             lineHeight: "180%",

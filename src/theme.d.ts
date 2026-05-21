@@ -17,7 +17,7 @@ declare module "@mui/material/styles" {
         captionLG: React.CSSProperties;
         captionSM: React.CSSProperties;
 
-        buttonLG: React.CSSProperties;
+        buttonMD: React.CSSProperties;
         buttonSM: React.CSSProperties;
 
         overlineLG: React.CSSProperties;
@@ -39,7 +39,7 @@ declare module "@mui/material/styles" {
         captionLG?: React.CSSProperties;
         captionSM?: React.CSSProperties;
 
-        buttonLG?: React.CSSProperties;
+        buttonMD?: React.CSSProperties;
         buttonSM?: React.CSSProperties;
 
         overlineLG?: React.CSSProperties;
@@ -105,10 +105,20 @@ declare module "@mui/material/Typography" {
         captionLG: true;
         captionSM: true;
 
-        buttonLG: true;
+        buttonMD: true;
         buttonSM: true;
 
         overlineLG: true;
         overlineSM: true;
+    }
+}
+
+declare module "@mui/material/styles" {
+    interface Palette {
+        third: Palette["primary"];
+    }
+
+    interface PaletteOptions {
+        third?: PaletteOptions["primary"];
     }
 }
