@@ -11,12 +11,10 @@ type ButtonSize = "small" | "medium" | "large";
 interface AppCardButtonProps {
     color?: ButtonColor;
     textColor?: TextColorKey;
-    border?: boolean;
-    shadow?: boolean;
     size?: ButtonSize;
     children?: React.ReactNode;
+    border?: ButtonColor;
     disabled?: boolean;
-    loading?: boolean;
     onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void | Promise<void>;
     sx?: SxProps<Theme>;
     className?: string;
@@ -37,9 +35,7 @@ const AppCardButton = forwardRef<HTMLButtonElement, AppCardButtonProps>(
             textColor,
             size= 'medium',
             border = false,
-            shadow = true,
             disabled = false,
-            loading = false,
             onClick,
             sx,
             className,
@@ -59,8 +55,7 @@ const AppCardButton = forwardRef<HTMLButtonElement, AppCardButtonProps>(
             return () => { isMountedRef.current = false; };
         }, []);
 
-        const isLoading = loading || internalLoading;
-        const isDisabled = disabled || isLoading;
+        const isDisabled = disabled || added;
 
         const handleClick = useCallback(
             async (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -95,10 +90,6 @@ const AppCardButton = forwardRef<HTMLButtonElement, AppCardButtonProps>(
             return `1px solid ${theme.palette[color].main}`;
         })();
 
-        const resolvedShadow = (() => {
-            if (!shadow || added) return "none";
-            return theme.shadows[2];
-        })();
 
         const label = added ? "افزوده شد" : "افزودن به سبد خرید";
 
@@ -111,18 +102,21 @@ const AppCardButton = forwardRef<HTMLButtonElement, AppCardButtonProps>(
                 className={className}
                 aria-label={ariaLabel}
                 aria-describedby={ariaDescribedBy}
-                aria-busy={isLoading}
                 sx={{
+                    borderRadius:"4px",
                     padding: PADDING[size],
                     minWidth: 180,
                     backgroundColor: resolvedBackground,
                     color: resolvedTextColor,
                     border: resolvedBorder,
-                    boxShadow: resolvedShadow,
                     transition: "all 0.2s ease-in-out",
-                    "&:hover": {
-                        boxShadow: shadow && !added ? theme.shadows[4] : "none",
+                    "&.Mui-disabled": {
+                        opacity: 1,
+                        color: resolvedTextColor,
+                        border: resolvedBorder,
+                        cursor: "default",
                     },
+
                     ...sx,
                 }}
             >

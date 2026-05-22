@@ -11,7 +11,7 @@ export default function RootLayout({children}: {
         <html lang="fa" >
         <body>
         <ThemeProvider theme={theme}>
-         {children}
+                {children}
         </ThemeProvider>
         </body>
         </html>

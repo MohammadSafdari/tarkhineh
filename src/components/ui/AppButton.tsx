@@ -4,7 +4,7 @@ import { useTheme } from "@mui/material/styles";
 import type { SxProps, Theme, PaletteColor } from "@mui/material";
 
 
-type ButtonColor = "primary" | "secondary" | "success" | "warning" | "error" | "third";
+type ButtonColor = "primary" | "secondary" | "success" | "warning" | "error" | "info";
 type ButtonVariant = "contained" | "outlined" | "text";
 type ButtonSize = "small" | "medium" | "large";
 type TextColorKey = keyof Pick<PaletteColor, "main" | "light" | "dark" | "contrastText">;
@@ -16,7 +16,7 @@ interface AppButtonProps {
     size?: ButtonSize;
     radius?: number;
     background?: "default" | "transparent" | (string & {});
-    textColor?: TextColorKey;
+    textColor?: ButtonColor | TextColorKey;
     border?: boolean;
     shadow?: boolean;
     children?: React.ReactNode;
@@ -109,7 +109,18 @@ const AppButton = forwardRef<HTMLButtonElement, AppButtonProps>(
         })();
 
         const resolvedTextColor = (() => {
-            if (textColor) return theme.palette[color][textColor];
+            if (
+                textColor &&
+                ["primary", "secondary", "success", "warning", "error", "info"].includes(
+                    textColor
+                )
+            ) {
+                return theme.palette[textColor as ButtonColor].main;
+            }
+
+            if (textColor) {
+                return theme.palette[color][textColor as TextColorKey];
+            }
 
             if (variant === "outlined" || variant === "text") {
                 return theme.palette[color].main;
@@ -144,7 +155,10 @@ const AppButton = forwardRef<HTMLButtonElement, AppButtonProps>(
                 type={type}
 
                 fullWidth={fullWidth}
-                onClick={handleClick}
+                onClick={(e) => {
+                    e.currentTarget.classList.add("clicked");
+                    handleClick(e);
+                }}
                 disabled={isDisabled}
                 startIcon={!isLoading ? startContent : undefined}
                 endIcon={!isLoading ? endContent : undefined}
@@ -168,15 +182,46 @@ const AppButton = forwardRef<HTMLButtonElement, AppButtonProps>(
 
                     "&:hover": {
                         backgroundColor:
-                            variant === "contained"
+                            resolvedBackground !== "transparent"
+                                ? theme.palette[color].light
+                                : variant === "outlined"
+                                    ? `${theme.palette[color].main}14`
+                                    : "transparent",
+
+                        color:
+                            resolvedBackground === "transparent"
                                 ? theme.palette[color].dark
-                                : `${theme.palette[color].main}14`, // 8% opacity
+                                : resolvedTextColor,
+
+                        border:
+                            resolvedBackground === "transparent" &&
+                            (variant === "outlined" || border)
+                                ? `1px solid ${theme.palette[color].dark}`
+                                : resolvedBorder,
+
                         boxShadow:
-                            shadow && variant === "contained" ? theme.shadows[4] : "none",
+                            shadow && variant === "contained"
+                                ? theme.shadows[4]
+                                : "none",
                     },
 
                     "&:active": {
                         transform: "scale(0.98)",
+                    },
+
+                    "&.clicked": {
+                        ...(resolvedBackground !== "transparent"
+                            ? {
+                                backgroundColor: theme.palette[color].dark,
+                            }
+                            : variant === "outlined" || border
+                                ? {
+                                    color: theme.palette[color].dark,
+                                    border: `1px solid ${theme.palette[color].dark}`,
+                                }
+                                : {
+                                    color: theme.palette[color].dark,
+                                }),
                     },
 
                     "&.Mui-disabled": {

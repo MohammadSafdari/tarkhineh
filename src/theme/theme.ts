@@ -5,19 +5,19 @@ export const theme = createTheme({
 
         primary: {
             main: '#417F56',
-            light: '#E5F2E9',
-            dark: '#315F41',
+            light: '#315F41',
+            dark: '#294F36',
             contrastText: '#fff',
         },
 
         secondary:{
+            main: '#353535',
+            light: '#757575',
             dark: '#0C0C0C',
-            main: '#717171',
-            light: '#353535',
             contrastText: '#fff',
         },
 
-        third: {
+        info: {
             main: "#E5F2E9",
             light: "#CAE4D3",
             dark: "#B0D7BD",
