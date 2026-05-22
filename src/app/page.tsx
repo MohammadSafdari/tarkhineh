@@ -121,6 +121,22 @@ const eee = () => {
                     endContent={<AddIcon/>}
                     size={"medium"}
             />
+                <AppTextField
+                    startIcon={<AddIcon/>}
+                    fullWidth={true}
+                    label="kir"
+                    value={"رمز عبور"}
+                    endContent={<AddIcon/>}
+                    size={"medium"}
+                    error={true}
+            />
+                <AppTextField
+                    startIcon={<AddIcon/>}
+                    value={"رمز عبور"}
+                    endContent={<AddIcon/>}
+                    size={"medium"}
+                    error={true}
+            />
             </Box>
         </Box>
 

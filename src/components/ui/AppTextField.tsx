@@ -1,10 +1,11 @@
 import React, { forwardRef } from "react";
 import TextField from "@mui/material/TextField";
 import InputAdornment from "@mui/material/InputAdornment";
-import type {SxProps, Theme} from "@mui/material";
+import type { SxProps, Theme } from "@mui/material";
+import { useTheme } from "@mui/material/styles";
 
-type ButtonColor =| "primary"| "secondary"| "success"| "warning"| "error"| "info";
-type ButtonSize = "small" | "medium" ;
+type ButtonColor = "primary" | "secondary" | "success" | "warning" | "error" | "info";
+type ButtonSize = "small" | "medium";
 
 interface AppTextFieldProps {
     startIcon?: React.ReactNode;
@@ -18,9 +19,13 @@ interface AppTextFieldProps {
     maxRows?: number | string;
     minRows?: number | string;
     onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
+    onBlur?: (event: React.FocusEvent<HTMLInputElement>) => void;
+    onFocus?: (event: React.FocusEvent<HTMLInputElement>) => void;
     placeholder?: string;
     readOnly?: boolean;
     value?: string;
+    name?: string;
+    helperText?: string;
     sx?: SxProps<Theme>;
 }
 
@@ -38,18 +43,50 @@ const AppTextField = forwardRef<HTMLInputElement, AppTextFieldProps>(
             maxRows,
             minRows,
             onChange,
+            onBlur,
+            onFocus,
             placeholder,
             readOnly,
             value,
+            name,
+            helperText,
             sx,
         },
         ref
     ) => {
+        const theme = useTheme();
+        const isDarkMode = theme.palette.mode === "dark";
+
+        // تعریف رنگ‌ها بر اساس شرایط
+        const getBorderColor = () => {
+            if (error) return "#C30000";
+            if (disabled) return isDarkMode ? "#CBCBCB" : "#717171";
+            return isDarkMode ? "#CBCBCB" : "#717171";
+        };
+
+        const getTextColor = () => {
+            if (error) return "#C30000";
+            if (disabled) return isDarkMode ? "#CBCBCB" : "#717171";
+            return isDarkMode ? "#CBCBCB" : "#717171";
+        };
+
+        const getLabelColor = () => {
+            if (error) return "#C30000";
+            if (disabled) return isDarkMode ? "#CBCBCB" : "#717171";
+            return isDarkMode ? "#CBCBCB" : "#717171";
+        };
+
+        const hoverBgColor = isDarkMode ? "#353535" : "#F9F9F9";
+        const focusColor = "#417F56";
+
         return (
             <TextField
                 inputRef={ref}
+                name={name}
                 value={value}
                 onChange={onChange}
+                onBlur={onBlur}
+                onFocus={onFocus}
                 placeholder={placeholder}
                 label={label}
                 disabled={disabled}
@@ -57,6 +94,7 @@ const AppTextField = forwardRef<HTMLInputElement, AppTextFieldProps>(
                 fullWidth={fullWidth}
                 size={size}
                 color={color}
+                helperText={helperText}
                 multiline={!!maxRows || !!minRows}
                 maxRows={typeof maxRows === "number" ? maxRows : undefined}
                 minRows={typeof minRows === "number" ? minRows : undefined}
@@ -74,36 +112,123 @@ const AppTextField = forwardRef<HTMLInputElement, AppTextFieldProps>(
                     ) : undefined,
                 }}
                 sx={{
+                    // حذف هرگونه background اضافی
+                    "& .MuiInputBase-root": {
+                        backgroundColor: "transparent !important",
+                    },
+
+                    // استایل پایه برای input
                     "& .MuiInputBase-input": {
                         textAlign: "right",
-                        "& .MuiInputBase-input": {
-                            textAlign: "right",
-                        },
-
-                        // حالت عادی (outline / label)
-                        "& .MuiOutlinedInput-root": {
-                            "& fieldset": {
-                                borderColor: "secondary.main",
-                            },
-                        },
-
-                        // وقتی فوکوس میشه
-                        "& .MuiOutlinedInput-root.Mui-focused": {
-                            "& fieldset": {
-                                borderColor: "primary.main",
-                            },
-                        },
-
-                        // رنگ label در حالت عادی
-                        "& label": {
-                            color: "secondary.main",
-                        },
-
-                        // رنگ label در فوکوس
-                        "& label.Mui-focused": {
-                            color: "primary.main",
+                        color: getTextColor(),
+                        backgroundColor: "transparent !important",
+                        "&::placeholder": {
+                            color: getTextColor(),
+                            opacity: 0.7,
                         },
                     },
+
+                    // استایل کانتینر OutlinedInput
+                    "& .MuiOutlinedInput-root": {
+                        backgroundColor: "transparent !important",
+
+                        "& fieldset": {
+                            borderColor: getBorderColor(),
+                            transition: "all 0.2s ease",
+                            backgroundColor: "transparent",
+                        },
+
+                        // حالت هاور - فقط رنگ حاشیه تغییر کنه، بدون تغییر پس‌زمینه
+                        "&:hover fieldset": {
+                            borderColor: error ? "#C30000" : focusColor,
+                        },
+
+                        "&:hover": {
+                            backgroundColor: hoverBgColor,
+                        },
+
+                        // حالت فوکوس
+                        "&.Mui-focused fieldset": {
+                            borderColor: error ? "#C30000" : focusColor,
+                            borderWidth: "2px",
+                        },
+
+                        "&.Mui-focused": {
+                            backgroundColor: hoverBgColor,
+                        },
+
+                        // حذف حالت active سفید شدن
+                        "&:active": {
+                            backgroundColor: hoverBgColor,
+                        },
+
+                        "&:active fieldset": {
+                            borderColor: error ? "#C30000" : focusColor,
+                        },
+
+                        // حالت دیسэйбл
+                        "&.Mui-disabled": {
+                            backgroundColor: "transparent !important",
+                        },
+
+                        "&.Mui-disabled fieldset": {
+                            borderColor: getBorderColor(),
+                        },
+
+                        // حالت خطا
+                        "&.Mui-error fieldset": {
+                            borderColor: "#C30000",
+                        },
+
+                        "&.Mui-error:hover fieldset": {
+                            borderColor: "#C30000",
+                        },
+
+                        "&.Mui-error.Mui-focused": {
+                            backgroundColor: hoverBgColor,
+                        },
+                    },
+
+                    // استایل برای لیبل
+                    "& .MuiInputLabel-root": {
+                        color: getLabelColor(),
+                        "&.Mui-focused": {
+                            color: error ? "#C30000" : focusColor,
+                        },
+                        "&.Mui-error": {
+                            color: "#C30000",
+                        },
+                        "&.Mui-disabled": {
+                            color: getLabelColor(),
+                        },
+                    },
+
+                    // استایل برای هِلپِر تکست
+                    "& .MuiFormHelperText-root": {
+                        color: error ? "#C30000" : (isDarkMode ? "#CBCBCB" : "#717171"),
+                        "&.Mui-error": {
+                            color: "#C30000",
+                        },
+                    },
+
+                    // استایل برای آیکون‌های ادورنمنت
+                    "& .MuiInputAdornment-root": {
+                        "& .MuiTypography-root": {
+                            color: getTextColor(),
+                        },
+                        "& svg": {
+                            color: getTextColor(),
+                        },
+                    },
+
+                    // حذف افکت‌های دیفالت در حالت readOnly
+                    "& .MuiInputBase-readOnly": {
+                        "& fieldset": {
+                            borderStyle: "dashed",
+                        },
+                    },
+
+                    ...sx,
                 }}
             />
         );
