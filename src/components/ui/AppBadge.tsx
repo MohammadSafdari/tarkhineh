@@ -16,10 +16,7 @@ const AppCartButton = ({ itemCount = 0 }: AppCartButtonProps) => {
             sx={{
                 padding: '8px',
                 borderRadius: '4px',
-                backgroundColor: isActive ? 'primary.main' : 'info.dark',
-                '&:active': {
-                    backgroundColor: 'primary.main',
-                },
+                backgroundColor: isActive ? 'primary.main' : 'info.main',
             }}
         >
             <Badge

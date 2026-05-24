@@ -112,3 +112,22 @@ declare module "@mui/material/Typography" {
         overlineSM: true;
     }
 }
+declare module '@mui/material/styles' {
+    interface Shape {
+        Xs: number;
+        Sm: number;
+        Md: number;
+        Lg: number;
+        Xl: number;
+        Xll: number;
+    }
+
+    interface ShapeOptions {
+        Xs?: number;
+        Sm?: number;
+        Md?: number;
+        Lg?: number;
+        Xl?: number;
+        Xll?: number;
+    }
+}

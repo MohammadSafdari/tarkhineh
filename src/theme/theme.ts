@@ -127,13 +127,12 @@ export const theme = createTheme({
     ],
 
     shape: {
-        borderRadius: 8,
-        borderRadiusSm: 4,
-        borderRadiusMd: 8,
-        borderRadiusLg: 16,
-        borderRadiusXl: 24,
-        borderRadiusXll: 32,
-        borderRadiusXXl: 64,
+        Xs: 4,
+        Sm: 8,
+        Md: 16,
+        Lg: 24,
+        Xl: 32,
+        Xll: 64,
     },
 
     components: {

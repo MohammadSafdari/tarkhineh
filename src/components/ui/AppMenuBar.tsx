@@ -31,7 +31,6 @@ const NAV_ITEMS: NavItem[] = [
     { id: 'about', label: 'درباره ما' },
     { id: 'contact', label: 'تماس با ما' },
 ];
-
 const StyledMenu = styled((props: MenuProps) => (
     <Menu
         elevation={0}
@@ -50,9 +49,8 @@ const StyledMenu = styled((props: MenuProps) => (
             padding: '6px 0',
         },
         '& .MuiMenuItem-root': {
-            direction: 'rtl',
             justifyContent: 'flex-end',
-            fontSize: '0.9rem',
+            ...theme.typography.bodySM, // ✅ سایز bodySM
             fontWeight: 400,
             color: theme.palette.secondary.main,
             paddingInline: theme.spacing(3),
@@ -65,7 +63,6 @@ const StyledMenu = styled((props: MenuProps) => (
                 backgroundColor: 'transparent',
                 color: theme.palette.primary.main,
             },
-
             '&:active': {
                 backgroundColor: 'transparent',
             },
@@ -75,7 +72,6 @@ const StyledMenu = styled((props: MenuProps) => (
         },
     },
 }));
-
 interface NavButtonProps extends ButtonProps {
     active?: boolean;
 }
@@ -83,9 +79,9 @@ interface NavButtonProps extends ButtonProps {
 const NavButton = styled(Button, {
     shouldForwardProp: (prop) => prop !== 'active',
 })<NavButtonProps>(({ theme, active }) => ({
-    color: active ? theme.palette.primary.main : theme.palette.secondary.main,
-    fontWeight: active ? 700 : 500,
-    fontSize: '0.95rem',
+    color: active ? theme.palette.primary.main : theme.palette.secondary.light,
+    fontWeight: active ? 700 : 400,
+    ...theme.typography.bodyXL,
     textTransform: 'none',
     padding: '6px 4px',
     minWidth: 'unset',
@@ -95,7 +91,6 @@ const NavButton = styled(Button, {
         ? `2px solid ${theme.palette.primary.main}`
         : '2px solid transparent',
     transition: 'color 0.2s ease, border-color 0.2s ease',
-
     '&:hover': {
         backgroundColor: 'transparent',
         color: theme.palette.primary.main,
@@ -106,6 +101,7 @@ const NavButton = styled(Button, {
     },
     '&.Mui-focusVisible': {
         backgroundColor: 'transparent',
+
     },
     '& .MuiTouchRipple-root': {
         display: 'none',
@@ -157,8 +153,8 @@ const DropdownNavItem: React.FC<DropdownNavItemProps> = ({
                 onClick={handleButtonClick}
                 endIcon={
                     <KeyboardArrowDownIcon
-                        fontSize="small"
                         sx={{
+                            fontSize: '16px !important',
                             transition: 'transform 0.2s ease',
                             transform: open ? 'rotate(180deg)' : 'rotate(0deg)',
                         }}

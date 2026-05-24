@@ -3,18 +3,17 @@ import { Button, CircularProgress } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import type { SxProps, Theme, PaletteColor } from "@mui/material";
 
-
 type ButtonColor = "primary" | "secondary" | "success" | "warning" | "error" | "info";
 type ButtonVariant = "contained" | "outlined" | "text";
 type ButtonSize = "small" | "medium" | "large";
 type TextColorKey = keyof Pick<PaletteColor, "main" | "light" | "dark" | "contrastText">;
+type Shape = "Xs" | "Sm" | "Md" | "Lg" | "Xl" | "Xll";
 
 interface AppButtonProps {
-
     color?: ButtonColor;
     variant?: ButtonVariant;
     size?: ButtonSize;
-    radius?: number;
+    radius?: Shape;
     background?: "default" | "transparent" | (string & {});
     textColor?: ButtonColor | TextColorKey;
     border?: boolean;
@@ -26,9 +25,7 @@ interface AppButtonProps {
     type?: "reset" | "submit" | "button";
     disabled?: boolean;
     loading?: boolean;
-    onClick?: (
-        event: React.MouseEvent<HTMLButtonElement>
-    ) => void | Promise<void>;
+    onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void | Promise<void>;
     sx?: SxProps<Theme>;
     className?: string;
     "aria-label"?: string;
@@ -49,7 +46,7 @@ const AppButton = forwardRef<HTMLButtonElement, AppButtonProps>(
             size = "medium",
             background = "default",
             textColor,
-            radius,
+            radius = "Sm",
             border = false,
             shadow = true,
             children = "کلیک",
@@ -85,12 +82,10 @@ const AppButton = forwardRef<HTMLButtonElement, AppButtonProps>(
         const handleClick = useCallback(
             async (event: React.MouseEvent<HTMLButtonElement>) => {
                 if (!onClick) return;
-
                 setInternalLoading(true);
                 try {
                     await onClick(event);
                 } finally {
-
                     if (isMountedRef.current) {
                         setInternalLoading(false);
                     }
@@ -102,30 +97,20 @@ const AppButton = forwardRef<HTMLButtonElement, AppButtonProps>(
         const resolvedBackground = (() => {
             if (background === "transparent") return "transparent";
             if (background !== "default") return background;
-
             if (variant === "outlined" || variant === "text") return "transparent";
-
             return theme.palette[color].main;
         })();
 
         const resolvedTextColor = (() => {
-            if (
-                textColor &&
-                ["primary", "secondary", "success", "warning", "error", "info"].includes(
-                    textColor
-                )
-            ) {
+            if (textColor && ["primary", "secondary", "success", "warning", "error", "info"].includes(textColor)) {
                 return theme.palette[textColor as ButtonColor].main;
             }
-
             if (textColor) {
                 return theme.palette[color][textColor as TextColorKey];
             }
-
             if (variant === "outlined" || variant === "text") {
                 return theme.palette[color].main;
             }
-
             return theme.palette[color].contrastText;
         })();
 
@@ -140,6 +125,8 @@ const AppButton = forwardRef<HTMLButtonElement, AppButtonProps>(
             return theme.shadows[2];
         })();
 
+        const resolvedRadius = (theme.shape as Record<Shape, number | string>)[radius] ?? 4;
+
         const typographyVariant =
             size === "small"
                 ? theme.typography.buttonSM ?? theme.typography.button
@@ -153,7 +140,6 @@ const AppButton = forwardRef<HTMLButtonElement, AppButtonProps>(
                 variant={variant}
                 color={color}
                 type={type}
-
                 fullWidth={fullWidth}
                 onClick={(e) => {
                     e.currentTarget.classList.add("clicked");
@@ -167,9 +153,8 @@ const AppButton = forwardRef<HTMLButtonElement, AppButtonProps>(
                 aria-describedby={ariaDescribedBy}
                 aria-busy={isLoading}
                 aria-disabled={isDisabled}
-
                 sx={{
-                    borderRadius: "4px",
+                    borderRadius: `${resolvedRadius}px !important`,
                     padding: PADDING[size],
                     textTransform: "none",
                     transition: "all 0.2s ease-in-out",
@@ -177,9 +162,7 @@ const AppButton = forwardRef<HTMLButtonElement, AppButtonProps>(
                     color: resolvedTextColor,
                     ...(resolvedBorder !== undefined && { border: resolvedBorder }),
                     boxShadow: resolvedShadow,
-
                     ...typographyVariant,
-
                     "&:hover": {
                         backgroundColor:
                             resolvedBackground !== "transparent"
@@ -187,48 +170,36 @@ const AppButton = forwardRef<HTMLButtonElement, AppButtonProps>(
                                 : variant === "outlined"
                                     ? `${theme.palette[color].main}14`
                                     : "transparent",
-
                         color:
                             resolvedBackground === "transparent"
                                 ? theme.palette[color].dark
                                 : resolvedTextColor,
-
                         border:
-                            resolvedBackground === "transparent" &&
-                            (variant === "outlined" || border)
+                            resolvedBackground === "transparent" && (variant === "outlined" || border)
                                 ? `1px solid ${theme.palette[color].dark}`
                                 : resolvedBorder,
-
                         boxShadow:
                             shadow && variant === "contained"
                                 ? theme.shadows[4]
                                 : "none",
                     },
-
                     "&:active": {
                         transform: "scale(0.98)",
                     },
-
                     "&.clicked": {
                         ...(resolvedBackground !== "transparent"
-                            ? {
-                                backgroundColor: theme.palette[color].dark,
-                            }
+                            ? { backgroundColor: theme.palette[color].dark }
                             : variant === "outlined" || border
                                 ? {
                                     color: theme.palette[color].dark,
                                     border: `1px solid ${theme.palette[color].dark}`,
                                 }
-                                : {
-                                    color: theme.palette[color].dark,
-                                }),
+                                : { color: theme.palette[color].dark }),
                     },
-
                     "&.Mui-disabled": {
                         opacity: 0.6,
                         pointerEvents: "none",
                     },
-
                     ...sx,
                 }}
             >

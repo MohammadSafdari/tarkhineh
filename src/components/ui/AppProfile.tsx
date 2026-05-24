@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { styled, alpha } from '@mui/material/styles';
+import { styled } from '@mui/material/styles';
 import Button from '@mui/material/Button';
 import Menu, { MenuProps } from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
@@ -12,7 +12,6 @@ import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import LocationOnOutlinedIcon from '@mui/icons-material/LocationOnOutlined';
 import LogoutIcon from '@mui/icons-material/Logout';
 
-// ─── Types ────────────────────────────────────────────────────────────────────
 interface MenuItem {
     id: string;
     label: string;
@@ -23,7 +22,6 @@ interface AppProfileProps {
     isLoggedIn?: boolean;
 }
 
-// ─── Constants ────────────────────────────────────────────────────────────────
 const MENU_ITEMS: MenuItem[] = [
     { id: 'profile',  label: 'پروفایل',           icon: <PersonOutlineIcon fontSize="small" /> },
     { id: 'orders',   label: 'پیگیری سفارش',       icon: <LocalShippingOutlinedIcon fontSize="small" /> },
@@ -32,7 +30,6 @@ const MENU_ITEMS: MenuItem[] = [
     { id: 'logout',   label: 'خروج از حساب',        icon: <LogoutIcon fontSize="small" /> },
 ];
 
-// ─── Styled: Dropdown Menu ────────────────────────────────────────────────────
 const StyledMenu = styled((props: MenuProps) => (
     <Menu
         elevation={0}
@@ -51,14 +48,13 @@ const StyledMenu = styled((props: MenuProps) => (
             padding: '0',
         },
         '& .MuiMenuItem-root': {
-            direction: 'rtl',
             display: 'flex',
             flexDirection: 'row',
             alignItems: 'center',
             justifyContent: 'flex-end',
             textAlign: 'right',
             gap: '4px',
-            fontSize: '0.9rem',
+            ...theme.typography.bodySM,
             fontWeight: 400,
             color: theme.palette.secondary.main,
             paddingInline: theme.spacing(2.5),
@@ -89,13 +85,12 @@ const StyledMenu = styled((props: MenuProps) => (
     },
 }));
 
-// ─── Component ────────────────────────────────────────────────────────────────
 const AppProfile: React.FC<AppProfileProps> = ({ isLoggedIn = false }) => {
     const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
     const open = Boolean(anchorEl);
 
     const handleClick = (event: React.MouseEvent<HTMLElement>) => {
-        if (!isLoggedIn) return;
+        if (isLoggedIn) return;
         setAnchorEl(event.currentTarget);
     };
 
@@ -128,11 +123,9 @@ const AppProfile: React.FC<AppProfileProps> = ({ isLoggedIn = false }) => {
                     padding: '8px',
                     minWidth: 'unset',
                     borderRadius:'4px',
-                    backgroundColor: open ? 'primary.main' : 'info.dark',
+                    backgroundColor: open ? 'primary.main' : 'info.main',
                     cursor: isLoggedIn ? 'pointer' : 'default',
-                    '&:active': {
-                        backgroundColor: 'primary.main',
-                    },
+
                     '& .MuiButton-endIcon': {
                         marginLeft: 0,
                         marginRight: '-2px',
@@ -157,8 +150,8 @@ const AppProfile: React.FC<AppProfileProps> = ({ isLoggedIn = false }) => {
                 {MENU_ITEMS.map((item, index) => (
                     <React.Fragment key={item.id} >
                         <MenuItem onClick={handleClose} disableRipple >
-                            {item.icon}
                             {item.label}
+                            {item.icon}
                         </MenuItem>
                         {index < MENU_ITEMS.length - 1 && <Divider />}
                     </React.Fragment>
