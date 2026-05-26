@@ -3,7 +3,7 @@ import { Box, Typography, Card, CardMedia } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import BrokenImageOutlinedIcon from '@mui/icons-material/BrokenImageOutlined';
 import AppButton from '@/src/components/ui/AppButton';
-
+import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 
 type BranchCardSize = 'small' | 'medium';
 
@@ -26,7 +26,7 @@ const CardRoot = styled(Card, {
 })<{ cardSize: BranchCardSize }>(({ theme, cardSize }) => ({
     position: 'relative',
     borderRadius: theme.shape.Md,
-    border: '2px solid transparent',
+    border: `1px solid ${theme.palette.info.light}`,
     boxShadow: 'none',
     overflow: 'hidden',
     cursor: 'pointer',
@@ -36,6 +36,7 @@ const CardRoot = styled(Card, {
 
     '&:hover': {
         borderColor: theme.palette.primary.main,
+        shadows: theme.palette.primary.main,
     },
 
     ...(cardSize === 'medium' && {
@@ -76,24 +77,22 @@ const MediumLayout = styled(Box)(({ theme }) => ({
     flexDirection: 'column',
 }));
 
-const SmallLayout = styled(Box)(({ theme }) => ({
-    display: 'flex',
-    flexDirection: 'row',
-    alignItems: 'stretch',
-}));
-
-const TextBlock = styled(Box, {
-    shouldForwardProp: (prop) => prop !== 'cardSize',
-})<{ cardSize: BranchCardSize }>(({ theme, cardSize }) => ({
-    padding: cardSize === 'medium' ? theme.spacing(2, 2, 1.5) : theme.spacing(1.5, 1.5),
+const SmallLayout = styled(Box)({
     display: 'flex',
     flexDirection: 'column',
+});
+const TextBlock = styled(Box, {
+    shouldForwardProp: (prop) => prop !== 'cardSize',
+})<{ cardSize: BranchCardSize }>(({ theme }) => ({
+    padding: theme.spacing(1.5, 1.5),
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
     justifyContent: 'center',
     gap: theme.spacing(0.5),
     backgroundColor: theme.palette.background.paper,
     flex: 1,
 }));
-
 const BranchName = styled(Typography, {
     shouldForwardProp: (prop) => prop !== 'cardSize',
 })<{ cardSize: BranchCardSize }>(({ theme, cardSize }) => ({
@@ -108,8 +107,8 @@ const BranchAddress = styled(Typography, {
     ...(cardSize === 'medium' ? theme.typography.bodyMD : theme.typography.bodySM),
     color: theme.palette.secondary.light,
     lineHeight: '160%',
+    textAlign: 'center',
 }));
-
 const HoverButtonWrapper = styled(Box)({
     opacity: 0,
     transform: 'translateY(6px)',
@@ -128,7 +127,7 @@ const AppChooseBranch: React.FC<AppChooseBranchProps> = ({
     const imageHeight = isMedium ? 200 : 100;
 
     const imageBlock = (
-        <ImageWrapper sx={{ height: imageHeight, flexShrink: 0, ...(size === 'small' && { width: 120 }) }}>
+        <ImageWrapper sx={{ height: imageHeight, flexShrink: 0}}>
             <CardMedia
                 component="img"
                 image={branch.image}
@@ -151,11 +150,14 @@ const AppChooseBranch: React.FC<AppChooseBranchProps> = ({
             {isMedium && (
                 <HoverButtonWrapper className="hover-btn">
                     <AppButton
+                        color="primary"
                         size="small"
+                        type="button"
                         radius="Sm"
                         variant="outlined"
                         onClick={branch.onClick}
-                        endContent={<span>›</span>}
+                        endContent={<ArrowBackIosNewIcon sx={{marginRight:"5px"}}/>}
+                        sx={{marginRight:"20px",paddingX:"20px"}}
                     >
                         صفحه شعبه
                     </AppButton>
@@ -173,8 +175,8 @@ const AppChooseBranch: React.FC<AppChooseBranchProps> = ({
                 </MediumLayout>
             ) : (
                 <SmallLayout>
-                    {textBlock}
                     {imageBlock}
+                    {textBlock}
                 </SmallLayout>
             )}
         </CardRoot>

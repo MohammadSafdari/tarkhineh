@@ -20,6 +20,7 @@ interface AppCardButtonProps {
     className?: string;
     "aria-label"?: string;
     "aria-describedby"?: string;
+    fullWidth?: boolean;
 }
 
 const PADDING: Record<ButtonSize, string> = {
@@ -37,6 +38,7 @@ const AppCardButton = forwardRef<HTMLButtonElement, AppCardButtonProps>(
             border = false,
             disabled = false,
             onClick,
+            fullWidth = false,
             sx,
             className,
             "aria-label": ariaLabel,
@@ -101,11 +103,11 @@ const AppCardButton = forwardRef<HTMLButtonElement, AppCardButtonProps>(
                 disabled={isDisabled}
                 className={className}
                 aria-label={ariaLabel}
+                fullWidth={fullWidth}
                 aria-describedby={ariaDescribedBy}
                 sx={{
                     borderRadius:"4px",
                     padding: PADDING[size],
-                    minWidth: 180,
                     backgroundColor: resolvedBackground,
                     color: resolvedTextColor,
                     border: resolvedBorder,
