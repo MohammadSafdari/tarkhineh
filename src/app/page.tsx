@@ -8,6 +8,11 @@ import AppProductCard from "@/src/components/ui/AppProductCard";
 import AppFavoriteCard from "@/src/components/ui/AppFavoriteCard";
 import AppCardMenu from "@/src/components/ui/AppMenuCard";
 import AppChipList, {ChipItem} from "@/src/components/ui/AppChipList";
+import AppCardComment from "@/src/components/ui/AppCardComment";
+import AppPanel from "@/src/components/ui/AppPanel";
+import BasicDatePicker from "@/src/components/ui/AppCalendar";
+import AppFactor from "@/src/components/ui/AppFactor";
+import AppUploadImage from "@/src/components/ui/AppUploadImage";
 
 const categories: ChipItem[] = [
     { id: 1, label: "غذای ایرانی" },
@@ -90,28 +95,14 @@ const eee = () => {
                 />
             </Box>
             <Box sx={{display:"flex",gap:"10px"}}>
-                <AppCardMenu
-                    title="پاستا سبزیجات"
-                    description="پاستا، قارچ، گوجه، کدوی خوردشده، پیاز خلالی‌شده"
-                    originalPrice={175000}
-                    discountedPrice={150000}
-                    discountPercent={20}
-                    rating={2.5}
-                    imageUrl="./branch.png"
-                    onAddToCart={() => console.log("Added to cart")}
-                />
-                    <AppCardMenu
-                    title="پاستا سبزیجات"
-                    description="پاستا، قارچ، گوجه، کدوی خوردشده، پیاز خلالی‌شده"
-                    originalPrice={175000}
-                    discountedPrice={150000}
-                    discountPercent={20}
-                    rating={2.5}
-                    imageUrl="./branch.png"
-                    onAddToCart={() => console.log("Added to cart")}
-                />
-            </Box>
 
+                <AppCardComment authorName={'mmad'} date=' اسفند1387' comment={'هصثبمعهصبصضعبتذknde;wedw;dwjcbwp;wcljwc;jwbc;wjcbwcjbw;dcbwjcbjclqbcwlcbwlقبلقرمتصبرعخ'} rating={5}/>
+                <AppCardComment authorName={'mmad'} date=' اسفند1387' comment={'هصثبمعهصبصضعبتذknde;wedw;dwjcbwp;wcljwc;jwbc;wjcbwcjbw;dcbwjcbjclqbcwlcbwlقبلقرمتصبرعخ'} rating={5}/>
+            </Box>
+            <AppPanel/>
+            <BasicDatePicker/>
+            <AppFactor/>
+            <AppUploadImage/>
              <AppChipList items={categories} onChange={(ids) => console.log(ids)} />
             <AppFooter/>
         </Box>
