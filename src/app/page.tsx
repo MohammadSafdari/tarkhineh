@@ -13,6 +13,7 @@ import AppPanel from "@/src/components/ui/AppPanel";
 import BasicDatePicker from "@/src/components/ui/AppCalendar";
 import AppFactor from "@/src/components/ui/AppFactor";
 import AppUploadImage from "@/src/components/ui/AppUploadImage";
+import AppTextArea from "@/src/components/ui/AppTextArea";
 
 const categories: ChipItem[] = [
     { id: 1, label: "غذای ایرانی" },
@@ -103,6 +104,7 @@ const eee = () => {
             <BasicDatePicker/>
             <AppFactor/>
             <AppUploadImage/>
+                <AppTextArea/>
              <AppChipList items={categories} onChange={(ids) => console.log(ids)} />
             <AppFooter/>
         </Box>
