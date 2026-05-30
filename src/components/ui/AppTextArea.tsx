@@ -21,11 +21,11 @@ const Wrapper = styled("div")({
 });
 
 const PlaceholderRow = styled("div")({
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "flex-end",
-    color: theme.palette.secondary.main,
-    fontSize: theme.typography.bodySM,
+    // // display: "flex",
+    // // alignItems: "center",
+    // // justifyContent: "flex-end",
+    // color: theme.palette.secondary.main,
+    // fontSize: theme.typography.bodySM,
 });
 
 const StyledTextarea = styled(TextareaAutosize)({

@@ -158,7 +158,7 @@ const SocialButton = styled(IconButton)(({ theme }) => ({
 
 // ─── Component ────────────────────────────────────────────────────────────────
 
-const AppFooter: React.FC = () => {
+const Footer: React.FC = () => {
     const [name, setName] = React.useState('');
     const [phone, setPhone] = React.useState('');
     const [email, setEmail] = React.useState('');
@@ -261,4 +261,4 @@ const AppFooter: React.FC = () => {
     );
 };
 
-export default AppFooter;
+export default Footer;

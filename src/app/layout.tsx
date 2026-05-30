@@ -3,6 +3,8 @@ import localFont from "next/font/local";
 import React from "react";
 import { ThemeProvider } from "@mui/material/styles";
 import { theme } from "../theme/theme";
+import Navbar from "@/src/components/layouts/Navbar";
+import Footer from "@/src/components/layouts/Footer";
 
 const vazirmatn = localFont({
     src: [
@@ -26,7 +28,9 @@ export default function RootLayout({children}: {
         <html lang="fa" >
         <body>
         <ThemeProvider theme={theme}>
+            <Navbar/>
                 {children}
+            <Footer/>
         </ThemeProvider>
         </body>
         </html>
