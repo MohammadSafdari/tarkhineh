@@ -10,6 +10,36 @@ import GridViewOutlinedIcon from "@mui/icons-material/GridViewOutlined";
 import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined";
 import AssignmentOutlinedIcon from "@mui/icons-material/AssignmentOutlined";
 import WifiOutlinedIcon from "@mui/icons-material/WifiOutlined";
+import AppChooseBranch from "@/src/components/ui/AppChooseBrand";
+
+const branches = [
+    {
+        id: '1',
+        name: 'شعبه مرکزی تهران',
+        address: 'تهران، خیابان انقلاب، پلاک ۱۲۳',
+        image: '/branch.png',
+        onClick: () => console.log('رفت به شعبه ۱'),
+    },
+    {
+        id: '2',
+        name: 'شعبه سعادت‌آباد',
+        address: 'تهران، سعادت‌آباد، میدان فرهنگ',
+        image: '/branch.png',
+    }, {
+        id: '1',
+        name: 'شعبه مرکزی تهران',
+        address: 'تهران، خیابان انقلاب، پلاک ۱۲۳',
+        image: '/branch.png',
+        onClick: () => console.log('رفت به شعبه ۱'),
+    },
+    {
+        id: '2',
+        name: 'شعبه سعادت‌آباد',
+        address: 'تهران، سعادت‌آباد، میدان فرهنگ',
+        image: '/branch.png',
+    },
+];
+
 const categories = [
     { id: 1, label: "غذای اصلی", image: "/image.png" },
     { id: 2, label: "پیش غذا", image: "/image.png" },
@@ -120,6 +150,23 @@ const TextBox = styled(Box)({
     flex: 1,
 });
 
+const BranchesSection = styled(Box)({
+    width:'full',
+    display:'flex',
+    flexDirection:'column',
+    justifyContent:'center',
+    alignItems: 'center',
+    paddingTop:'40px',
+    paddingBottom:'40px',
+    gap:'20px',
+});
+
+const Branches = styled(Box)({
+    width:'90%',
+    display:'flex',
+    gap:'16px'
+});
+
 export default function Home() {
     return (
         <Box>
@@ -221,6 +268,23 @@ export default function Home() {
                     </TextBox>
                 </Content>
             </Section>
+            <BranchesSection>
+                    <Typography sx={{
+                        fontSize: theme.typography.h4,
+                        color: theme.palette.secondary.main,
+                    }}>
+                        ترخینه گردی
+                    </Typography>
+                <Branches>
+                    {branches.map((branch) => (
+                        <AppChooseBranch
+                            key={branch.id}
+                            branch={branch}
+                            size="medium"
+                        />
+                    ))}
+                </Branches>
+            </BranchesSection>
 
         </Box>
     );

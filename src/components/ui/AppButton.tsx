@@ -1,3 +1,5 @@
+"use client"
+
 import React, { forwardRef, useCallback, useRef } from "react";
 import { Button, CircularProgress } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
