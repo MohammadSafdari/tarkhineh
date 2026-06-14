@@ -168,7 +168,7 @@ const Footer: React.FC = () => {
     return (
         <FooterRoot>
             <BgImage
-                src="https://images.unsplash.com/photo-1514190051997-0f6f39ca5cde?w=1400&q=80"
+                src="/branch.png"
                 alt="footer background"
             />
 

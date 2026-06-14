@@ -25,32 +25,32 @@ interface AppSliderProps {
 const DEFAULT_SLIDES: Slide[] = [
     {
         id: 1,
-        image: 'https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=1400&q=80',
+        image: '/branch.png',
         title: 'یک ماجراجویی آشپزی برای تمام حواس',
     },
     {
         id: 2,
-        image: 'https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=1400&q=80',
+        image: '/branch.png',
         title: 'طعم‌هایی که فراموش نمی‌شوند',
     },
     {
         id: 3,
-        image: 'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1400&q=80',
+        image: '/branch.png',
         title: 'تجربه‌ای متفاوت در هر وعده',
     },
     {
         id: 1,
-        image: 'https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=1400&q=80',
+        image: '/branch.png',
         title: 'یک ماجراجویی آشپزی برای تمام حواس',
     },
     {
         id: 2,
-        image: 'https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=1400&q=80',
+        image: '/branch.png',
         title: 'طعم‌هایی که فراموش نمی‌شوند',
     },
     {
         id: 3,
-        image: 'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1400&q=80',
+        image: '/branch.png',
         title: 'تجربه‌ای متفاوت در هر وعده',
     },
 ];
